@@ -1,13 +1,13 @@
 <template>
   <div class="container">
     <div class="logo">
-      <img src="./assets/images/logo.svg" alt="Logo" />
+      <img class="block" src="./assets/images/logo.svg" alt="Logo" />
     </div>
-    <div class="tip-calculator">
+    <div class="tip-calculator flex">
       <div class="calculator">
         <form>
           <div class="form-field">
-            <label for="bill">Bill</label>
+            <label class="block" for="bill">Bill</label>
             <input
               type="number"
               name="bill"
@@ -74,7 +74,7 @@
             </div>
           </div>
           <div class="form-field" :class="{ invalid: zeroValue }">
-            <label for="people"
+            <label class="flex" for="people"
               >Number of People
               <small v-if="zeroValue">Can't be zero</small></label
             >
@@ -89,15 +89,15 @@
           </div>
         </form>
       </div>
-      <div class="result">
-        <div class="content">
+      <div class="result flex">
+        <div class="content flex">
           <p>
             Tip Amount <br />
             <span>/ person</span>
           </p>
           <h3>${{ tipPerPerson || "0.00" }}</h3>
         </div>
-        <div class="content">
+        <div class="content flex">
           <p>
             Total <br />
             <span>/ person</span>
@@ -176,6 +176,9 @@ export default {
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
+$dark-cyan : hsl(183, 100%, 15%);
+$strong-cyan : hsl(172, 67%, 45%);
+
 * {
   margin: 0;
   padding: 0;
@@ -188,6 +191,25 @@ html {
 
 body {
   font-family: "Space Mono", sans-serif;
+}
+
+input,
+button {
+  outline: none;
+  border: none;
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.flex {
+  display: flex;
+}
+
+.block {
+  display: block;
 }
 
 #app {
@@ -211,7 +233,6 @@ body {
       margin-bottom: 80px;
 
       img {
-        display: block;
         margin: 0 auto;
       }
 
@@ -224,11 +245,11 @@ body {
       background: hsl(0, 0%, 100%);
       padding: 30px;
       border-radius: 20px;
-      display: flex;
       align-items: center;
 
       @media screen and (max-width: 768px) {
         flex-direction: column;
+        border-radius: 30px 30px 0 0;
       }
 
       .calculator {
@@ -276,31 +297,27 @@ body {
 
           p,
           label {
-            display: block;
             font-weight: 500;
             font-size: 14px;
             margin-bottom: 10px;
-            color: hsl(183, 100%, 15%);
+            color: $dark-cyan;
           }
 
           label {
-            display: flex;
             justify-content: space-between;
             align-items: baseline;
           }
 
           input {
             width: 100%;
-            font: inherit;
             text-align: right;
             background: hsl(189, 41%, 97%);
             border-radius: 5px;
             border: 3px solid transparent;
-            outline: none;
             padding: 6px 15px 6px 40px;
             font-size: 20px;
             font-weight: 700;
-            color: hsl(183, 100%, 15%);
+            color: $dark-cyan;
             transition: all 0.3s linear;
 
             &::placeholder {
@@ -308,38 +325,32 @@ body {
             }
 
             &:focus {
-              border: 3px solid hsl(172, 67%, 45%);
+              border: 3px solid $strong-cyan;
             }
           }
 
           .options {
-            // display: flex;
-            // justify-content: space-between;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             grid-gap: 14px;
 
             button {
               border-radius: 5px;
-              background: hsl(183, 100%, 15%);
+              background: $dark-cyan;
               color: #fff;
-              outline: none;
-              border: none;
-              font: inherit;
               padding: 8px;
-              cursor: pointer;
               height: 40px;
               font-weight: 600;
               transition: all 0.3s linear;
 
               &.selected {
-                background: hsl(172, 67%, 45%);
-                color: hsl(183, 100%, 15%);
+                background: $strong-cyan;
+                color: $dark-cyan;
               }
 
               &:hover {
                 background: hsl(172, 100%, 61%);
-                color: hsl(183, 100%, 15%);
+                color: $dark-cyan;
               }
             }
 
@@ -360,10 +371,9 @@ body {
       .result {
         flex: 0 0 50%;
         max-width: 50%;
-        background: hsl(183, 100%, 15%);
+        background: $dark-cyan;
         border-radius: 10px;
         padding: 35px;
-        display: flex;
         flex-direction: column;
         min-height: 360px;
 
@@ -375,7 +385,6 @@ body {
         }
 
         .content {
-          display: flex;
           justify-content: space-between;
           align-items: center;
           margin-bottom: 20px;
@@ -393,23 +402,18 @@ body {
 
           h3 {
             font-size: 38px;
-            color: hsl(172, 67%, 45%);
+            color: $strong-cyan;
           }
         }
 
         .reset {
-          display: block;
           width: 100%;
           padding: 10px 20px;
           border-radius: 5px;
-          font: inherit;
-          outline: none;
-          border: none;
-          cursor: pointer;
           font-weight: 700;
           text-transform: uppercase;
-          background: hsl(172, 67%, 45%);
-          color: hsl(183, 100%, 15%);
+          background: $strong-cyan;
+          color: $dark-cyan;
           margin-top: auto;
           transition: all 0.3s linear;
 
@@ -420,7 +424,7 @@ body {
 
           &:hover {
             background: hsl(172, 100%, 61%);
-            color: hsl(183, 100%, 15%);
+            color: $dark-cyan;
           }
         }
       }
