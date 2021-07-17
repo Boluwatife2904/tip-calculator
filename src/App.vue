@@ -191,7 +191,7 @@ body {
 }
 
 #app {
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
   display: flex;
   justify-content: center;
@@ -203,10 +203,20 @@ body {
     margin: 0 auto;
     width: 100%;
 
+    @media screen and (max-width: 768px) {
+      margin-top: 50px;
+    }
+
     .logo {
+      margin-bottom: 80px;
+
       img {
         display: block;
-        margin: 0 auto 80px;
+        margin: 0 auto;
+      }
+
+      @media screen and (max-width: 768px) {
+        margin-bottom: 50px;
       }
     }
 
